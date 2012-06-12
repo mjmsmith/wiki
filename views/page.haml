@@ -1,0 +1,19 @@
+%h1
+  - if !page.parent.empty?
+    %a{:href => "/name/#{html page.parent}"} #{html page.parent}
+    |
+  #{html page.name}
+  %a{:href => "/edit/#{page.id}"}
+    %img{:src => '/images/edit.png'}>
+
+%div
+  #{page.html}
+
+%div
+  %br
+  - if prev_page
+    %a{:href => "/page/#{prev_page.id}"}<
+      %img{:src => '/images/prev.png'}
+  - if next_page
+    %a{:href => "/page/#{next_page.id}"}<
+      %img{:src => '/images/next.png'}

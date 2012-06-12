@@ -1,0 +1,14 @@
+%h1 #{html title}
+
+- Page.all_names.each do |n|
+  %table
+    %tr
+      %td{:colspan => '2'}
+        %a{:href => "/name/#{n}"}
+          %h2 #{html n}
+    - Page.all(:name => n, :order => :id.desc).each do |p|
+      %tr
+        %td.number
+          %a{:href => "/edit/#{p.id}"} [#{html p.id}]
+        %td
+          %a{:href => "/page/#{p.id}"} #{html p.time_stamp.strftime '%m/%d/%y %H:%M:%S'}

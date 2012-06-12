@@ -1,0 +1,31 @@
+%h1
+  #{html title}
+  %a{:href => '#', :onClick => 'deletePage()'}
+    %img{:src => '/images/delete.png'}
+  
+  %form{:action => "/delete/#{page.id}", :method => 'post', :id => 'delete', :style => 'display:hidden'}
+
+%form{:action => '/new', :method => 'post'}
+  %div
+    %label{:for => 'name'} Name:
+  %div
+    %input{:type => 'text', :name => 'name', :value =>"#{html page.name}"}
+  %div
+    %label{:for => 'parent'} Parent:
+  %div
+    %input{:type => 'text', :name => 'parent', :value => "#{html page.parent}"}
+  %div
+    %label{:for => 'text'} Text:
+  %div
+    #{find_and_preserve('<textarea name="text" cols="70" rows="20">'+page.text+'</textarea>')}
+  %div
+    %input{:type => 'submit', :value => 'Update'}
+
+:javascript
+
+  function deletePage() {
+    if (confirm("Delete this page?")) {
+      $("#delete").submit();
+    }
+  }
+
