@@ -23,7 +23,9 @@ class Page
   end
   
   def html
-    markdown = self.text.gsub /\[\[(.*?)\]\]/, '<a href="/name/\1">\1</a>'
+    markdown = String.new(self.text)
+    markdown.gsub!(/\[\[(.*?)\]\]/, '<a href="/name/\1">\1</a>')
+    markdown.gsub!(/^[\w\<][^\n]*\n+/) { |x| x =~ /\n{2}/ ? x : (x.strip!; x << "  \n") }
 
     RDiscount.new(markdown).to_html
   end
