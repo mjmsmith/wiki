@@ -12,7 +12,6 @@ class App < Sinatra::Base
   
   configure do
     enable :static
-    set :public, 'public'
     set :public_folder, 'public'
     set :raise_errors, false 
     set :show_exceptions, true if development?
