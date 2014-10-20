@@ -1,9 +1,10 @@
 require 'rubygems'
 require 'dm-core'
 require 'haml'
-require 'models/page'
 require 'sass'
 require 'sinatra'
+
+require './models/page'
 
 DataMapper::Logger.new($stdout, :debug)
 DataMapper.setup(:default, "mysql://#{ENV['MYSQL_USER']}:#{ENV['MYSQL_PASSWORD']}@localhost/wiki")
